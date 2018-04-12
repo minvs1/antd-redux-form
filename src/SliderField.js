@@ -39,7 +39,7 @@ const SliderField = field => {
         min={field.min}
         onChange={handleChange}
         step={field.step}
-        value={field.input.value}
+        value={field.input.value || field.min || 0}
       />
     </FormItem>
   )
