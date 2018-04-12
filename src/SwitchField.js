@@ -22,9 +22,15 @@ const SwitchField = field => {
 
   return (
     <FormItem
+      colon={field.colon}
+      extra={field.extra}
+      hasFeedback={field.hasFeedback}
       help={hasError ? field.meta.error : field.help}
       label={field.label}
+      labelCol={field.labelCol}
+      required={field.required}
       validateStatus={hasError ? 'error' : ''}
+      wrapperCol={field.wrapperCol}
     >
       <Switch onChange={handleChange} checked={!!field.input.value} />
     </FormItem>
