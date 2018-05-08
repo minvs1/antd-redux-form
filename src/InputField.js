@@ -21,6 +21,9 @@ const InputField = (field: Object) => {
     }
   }
 
+  const labelCol = field.labelCol || { xs: { span: 24 }, sm: { span: 8 } }
+  const wrapperCol = field.wrapperCol || { xs: { span: 24 }, sm: { span: 16 } }
+
   return (
     <FormItem
       colon={field.colon}
@@ -28,10 +31,10 @@ const InputField = (field: Object) => {
       hasFeedback={field.hasFeedback}
       help={hasError ? field.meta.error : field.help}
       label={field.label}
-      labelCol={field.labelCol}
+      labelCol={labelCol}
       required={field.required}
       validateStatus={hasError ? 'error' : ''}
-      wrapperCol={field.wrapperCol}
+      wrapperCol={wrapperCol}
     >
       <Input
         {...field.input}
