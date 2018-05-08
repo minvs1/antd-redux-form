@@ -52,6 +52,7 @@ const RadioButtonField = (field: Object) => {
             checked={button.checked}
             defaultChecked={button.defaultChecked}
             disabled={button.disabled}
+            key={button.value}
             value={button.value}
           >
             {button.label}
