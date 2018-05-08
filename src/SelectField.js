@@ -59,7 +59,6 @@ const SelectField = (field: Object) => {
         showArrow={field.showArrow}
         size={field.size}
         tokenSeparators={field.tokenSeparators}
-        value={field.input.value}
         onBlur={field.onBlur}
         onChange={handleChange}
         onDeselect={field.onDeselect}
