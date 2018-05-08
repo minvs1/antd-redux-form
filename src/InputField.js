@@ -38,11 +38,17 @@ const InputField = (field: Object) => {
     >
       <Input
         {...field.input}
+        addonAfter={field.addonAfter}
+        addonBefore={field.addonBefore}
+        defaultValue={field.defaultValue}
         disabled={field.disabled}
         id={field.id}
+        prefix={field.prefix}
+        size={field.size}
+        suffix={field.suffix}
         onChange={handleChange}
         placeholder={field.placeholder}
-        type={field.type}
+        onPressEnter={field.onPressEnter}
       />
     </FormItem>
   )
