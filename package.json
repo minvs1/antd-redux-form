@@ -1,6 +1,6 @@
 {
   "name": "antd-redux-form",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "redux-form fields with ant design",
   "main": "lib/index.js",
   "scripts": {
