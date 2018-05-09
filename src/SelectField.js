@@ -52,6 +52,7 @@ const SelectField = (field: Object) => {
         maxTagPlaceholder={field.maxTagPlaceholder}
         mode={field.mode}
         notFoundContent={field.notFoundContent}
+        id={field.id}
         optionFilterProp={field.optionFilterProp}
         optionLabelProp={field.optionLabelProp}
         placeholder={field.placeholder}
