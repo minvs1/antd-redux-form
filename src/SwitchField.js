@@ -35,7 +35,11 @@ const SwitchField = field => {
       validateStatus={hasError ? 'error' : ''}
       wrapperCol={wrapperCol}
     >
-      <Switch onChange={handleChange} checked={!!field.input.value} />
+      <Switch
+        onChange={handleChange}
+        checked={!!field.input.value}
+        id={field.id}
+      />
     </FormItem>
   )
 }
