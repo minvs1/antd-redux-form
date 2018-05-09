@@ -35,56 +35,57 @@ const SelectField = (field: Object) => {
       validateStatus={hasError ? 'error' : ''}
       wrapperCol={wrapperCol}
     >
-      <Select
-        allowClear={field.allowClear}
-        autoFocus={field.autoFocus}
-        defaultActiveFirstOption={field.defaultActiveFirstOption}
-        defaultValue={field.defaultValue}
-        disabled={field.disabled}
-        dropdownClassName={field.dropdownClassName}
-        dropdownMatchSelectWidth={field.dropdownMatchSelectWidth}
-        dropdownStyle={field.dropdownStyle}
-        filterOption={field.filterOption}
-        firstActiveValue={field.firstActiveValue}
-        getPopupContainer={field.getPopupContainer}
-        labelInValue={field.labelInValue}
-        maxTagCount={field.maxTagCount}
-        maxTagPlaceholder={field.maxTagPlaceholder}
-        mode={field.mode}
-        notFoundContent={field.notFoundContent}
-        id={field.id}
-        optionFilterProp={field.optionFilterProp}
-        optionLabelProp={field.optionLabelProp}
-        placeholder={field.placeholder}
-        showSearch={field.showSearch}
-        showArrow={field.showArrow}
-        size={field.size}
-        tokenSeparators={field.tokenSeparators}
-        value={field.input.value ? field.input.value : undefined}
-        onBlur={field.onBlur}
-        onChange={handleChange}
-        onDeselect={field.onDeselect}
-        onFocus={field.onFocus}
-        onInputKeyDown={field.onInputKeyDown}
-        onMouseEnter={field.onMouseEnter}
-        onMouseLeave={field.onMouseLeave}
-        onPopupScroll={field.onPopupScroll}
-        onSearch={field.onSearch}
-        onSelect={field.onSelect}
-      >
-        {field.options.map((option, index) => {
-          return (
-            <Option
-              disabled={option.disabled}
-              key={option.value}
-              value={option.value}
-              title={option.title || option.value}
-            >
-              {option.label}
-            </Option>
-          )
-        })}
-      </Select>
+      <div id={field.id}>
+        <Select
+          allowClear={field.allowClear}
+          autoFocus={field.autoFocus}
+          defaultActiveFirstOption={field.defaultActiveFirstOption}
+          defaultValue={field.defaultValue}
+          disabled={field.disabled}
+          dropdownClassName={field.dropdownClassName}
+          dropdownMatchSelectWidth={field.dropdownMatchSelectWidth}
+          dropdownStyle={field.dropdownStyle}
+          filterOption={field.filterOption}
+          firstActiveValue={field.firstActiveValue}
+          getPopupContainer={field.getPopupContainer}
+          labelInValue={field.labelInValue}
+          maxTagCount={field.maxTagCount}
+          maxTagPlaceholder={field.maxTagPlaceholder}
+          mode={field.mode}
+          notFoundContent={field.notFoundContent}
+          optionFilterProp={field.optionFilterProp}
+          optionLabelProp={field.optionLabelProp}
+          placeholder={field.placeholder}
+          showSearch={field.showSearch}
+          showArrow={field.showArrow}
+          size={field.size}
+          tokenSeparators={field.tokenSeparators}
+          value={field.input.value ? field.input.value : undefined}
+          onBlur={field.onBlur}
+          onChange={handleChange}
+          onDeselect={field.onDeselect}
+          onFocus={field.onFocus}
+          onInputKeyDown={field.onInputKeyDown}
+          onMouseEnter={field.onMouseEnter}
+          onMouseLeave={field.onMouseLeave}
+          onPopupScroll={field.onPopupScroll}
+          onSearch={field.onSearch}
+          onSelect={field.onSelect}
+        >
+          {field.options.map((option, index) => {
+            return (
+              <Option
+                disabled={option.disabled}
+                key={option.value}
+                value={option.value}
+                title={option.title || option.value}
+              >
+                {option.label}
+              </Option>
+            )
+          })}
+        </Select>
+      </div>
     </FormItem>
   )
 }
