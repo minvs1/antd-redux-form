@@ -44,6 +44,7 @@ const InputField = (field: Object) => {
         disabled={field.disabled}
         id={field.id}
         prefix={field.prefix}
+        maxLength={field.maxLength}
         size={field.size}
         suffix={field.suffix}
         onChange={handleChange}
