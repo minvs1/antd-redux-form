@@ -21,8 +21,12 @@ const InputField = (field: Object) => {
     }
   }
 
-  const labelCol = field.labelCol || { xs: { span: 24 }, sm: { span: 8 } }
-  const wrapperCol = field.wrapperCol || { xs: { span: 24 }, sm: { span: 16 } }
+  const labelCol =
+    field.labelCol ||
+    (field.label ? { xs: { span: 24 }, sm: { span: 8 } } : { span: 0 })
+  const wrapperCol =
+    field.wrapperCol ||
+    (field.label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 })
 
   return (
     <FormItem
