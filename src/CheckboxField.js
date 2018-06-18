@@ -49,7 +49,7 @@ const CheckboxField = (field: Object) => {
         indeterminate={field.indeterminate}
         onChange={handleChange}
       >
-        {field.label}
+        {field.children}
       </Checkbox>
     </FormItem>
   )
