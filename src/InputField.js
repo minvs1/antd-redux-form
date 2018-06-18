@@ -54,6 +54,7 @@ const InputField = (field: Object) => {
         onChange={handleChange}
         placeholder={field.placeholder}
         onPressEnter={field.onPressEnter}
+        type={field.type}
       />
     </FormItem>
   )
