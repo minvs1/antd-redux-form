@@ -22,9 +22,9 @@ const RecaptchaField = (field: Object) => {
     }
   }
   
-  const onloadCallback = response => {
-    if (field.onloadCallback) {
-      field.onloadCallback(response)
+  const onLoadCallback = () => {
+    if (field.onLoadCallback) {
+      field.onLoadCallback()
     }
   }
 
@@ -49,20 +49,17 @@ const RecaptchaField = (field: Object) => {
     >
       <Recaptcha
         className={field.className}
-        onloadCallbackName={field.onloadCallbackName}
         elementID={field.elementID}
         expiredCallback={field.expiredCallback}
         render={field.render}
-        sitekey={field.sitekey}
+        sitekey={field.siteKey}
         theme={field.theme}
         type={field.type}
-        verifyCallbackName={field.verifyCallbackName}
-        expiredCallbackName={field.expiredCallbackName}
         size={field.size}
-        tabindex={field.tabindex}
+        tabindex={field.tabIndex}
         hl={field.hl}
         badge={field.badge}
-        onloadCallback={onloadCallback}
+        onloadCallback={onLoadCallback}
         verifyCallback={verifyCallback}
       />
     </FormItem>
