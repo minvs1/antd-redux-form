@@ -63,7 +63,6 @@ const RecaptchaField = (field: Object) => {
         hl={field.hl}
         badge={field.badge}
         onloadCallback={onloadCallback}
-        sitekey={this.state.showRecaptcha}
         verifyCallback={verifyCallback}
       />
     </FormItem>
