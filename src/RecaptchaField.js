@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { Form, Input } from 'antd'
+import { Form, Input, Spin } from 'antd'
 import Recaptcha from 'react-recaptcha'
 
 const FormItem = Form.Item
@@ -14,6 +14,8 @@ class RecaptchaField extends React.Component<Props, State> {
   }
   
   render() {
+    const field = this.props
+    
     const hasError = field.meta.touched && field.meta.error && !field.hideError
 
     const verifyCallback = response => {
@@ -57,9 +59,11 @@ class RecaptchaField extends React.Component<Props, State> {
         validateStatus={hasError ? 'error' : ''}
         wrapperCol={wrapperCol}
       >
-        <div style={{textAlign: 'center'}}>
-          <Spin tip="Loading reCAPTCHA..." />
-        </div>
+        {this.state.loading && (
+          <div style={{textAlign: 'center'}}>
+            <Spin tip="Loading reCAPTCHA..." />
+          </div>
+        )}
       
         <div style={{display: this.state.loading ? 'none' : 'block'}}>
           <Recaptcha
