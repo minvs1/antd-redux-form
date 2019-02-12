@@ -47,13 +47,13 @@ const InputField = (field: Object) => {
         defaultValue={field.defaultValue}
         disabled={field.disabled}
         id={field.id}
-        prefix={field.prefix}
         maxLength={field.maxLength}
+        onChange={handleChange}
+        onPressEnter={field.onPressEnter}
+        placeholder={field.placeholder}
+        prefix={field.prefix}
         size={field.size}
         suffix={field.suffix}
-        onChange={handleChange}
-        placeholder={field.placeholder}
-        onPressEnter={field.onPressEnter}
         type={field.type}
       />
     </FormItem>
