@@ -42,9 +42,9 @@ const RadioButtonField = (field: Object) => {
         defaultValue={field.defaultValue}
         disabled={field.disabled}
         name={field.input.name}
+        onChange={handleChange}
         size={field.size}
         value={field.input.value}
-        onChange={handleChange}
       >
         {field.options.map(button => (
           <RadioButton
@@ -59,6 +59,8 @@ const RadioButtonField = (field: Object) => {
           </RadioButton>
         ))}
       </RadioGroup>
+
+      {field.afterRadioGroup}
     </FormItem>
   )
 }
