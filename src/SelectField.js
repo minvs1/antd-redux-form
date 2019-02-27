@@ -5,78 +5,62 @@ import { Form, Select } from 'antd'
 const FormItem = Form.Item
 const Option = Select.Option
 
-const SelectField = (field: Object) => {
-  const hasError = field.meta.touched && field.meta.error && !field.hideError
+const SelectField = ({
+  colon,
+  extra,
+  hasFeedback,
+  meta,
+  help,
+  hideError,
+  required,
+  id,
+  labelCol,
+  wrapperCol,
+  input,
+  onChange,
+  options,
+  ...restProps
+}: Object) => {
+  const hasError = meta.touched && meta.error && !hideError
 
-  const handleChange = (value, option) => {
-    if (field.input.onChange) {
-      field.input.onChange(value)
+  const handleChange = value => {
+    if (input.onChange) {
+      input.onChange(value)
     }
 
-    if (field.onChange) {
-      field.onChange(value)
+    if (onChange) {
+      onChange(value)
     }
   }
 
-  const labelCol =
-    field.labelCol ||
-    (field.label ? { xs: { span: 24 }, sm: { span: 8 } } : { span: 0 })
-  const wrapperCol =
-    field.wrapperCol ||
-    (field.label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 })
+  const _labelCol =
+    labelCol ||
+    (restProps.label ? { xs: { span: 24 }, sm: { span: 8 } } : { span: 0 })
+  const _wrapperCol =
+    wrapperCol ||
+    (restProps.label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 })
 
   // TODO: Implement OptGroup
 
   return (
     <FormItem
-      colon={field.colon}
-      extra={field.extra}
-      hasFeedback={field.hasFeedback}
-      help={hasError ? field.meta.error : field.help}
-      label={field.label}
-      labelCol={labelCol}
-      required={field.required}
+      colon={colon}
+      extra={extra}
+      hasFeedback={hasFeedback}
+      help={hasError ? meta.error : help}
+      label={restProps.label}
+      labelCol={_labelCol}
+      required={required}
       validateStatus={hasError ? 'error' : ''}
-      wrapperCol={wrapperCol}
+      wrapperCol={_wrapperCol}
     >
-      <div id={field.id}>
+      <div id={id}>
         <Select
-          allowClear={field.allowClear}
-          autoFocus={field.autoFocus}
-          defaultActiveFirstOption={field.defaultActiveFirstOption}
-          defaultValue={field.defaultValue}
-          disabled={field.disabled}
-          dropdownClassName={field.dropdownClassName}
-          dropdownMatchSelectWidth={field.dropdownMatchSelectWidth}
-          dropdownStyle={field.dropdownStyle}
-          filterOption={field.filterOption}
-          firstActiveValue={field.firstActiveValue}
-          getPopupContainer={field.getPopupContainer}
-          labelInValue={field.labelInValue}
-          maxTagCount={field.maxTagCount}
-          maxTagPlaceholder={field.maxTagPlaceholder}
-          mode={field.mode}
-          notFoundContent={field.notFoundContent}
-          optionFilterProp={field.optionFilterProp}
-          optionLabelProp={field.optionLabelProp}
-          placeholder={field.placeholder}
-          showSearch={field.showSearch}
-          showArrow={field.showArrow}
-          size={field.size}
-          tokenSeparators={field.tokenSeparators}
-          value={field.input.value ? field.input.value : undefined}
-          onBlur={field.onBlur}
           onChange={handleChange}
-          onDeselect={field.onDeselect}
-          onFocus={field.onFocus}
-          onInputKeyDown={field.onInputKeyDown}
-          onMouseEnter={field.onMouseEnter}
-          onMouseLeave={field.onMouseLeave}
-          onPopupScroll={field.onPopupScroll}
-          onSearch={field.onSearch}
-          onSelect={field.onSelect}
+          value={input.value ? input.value : undefined}
+          {...restProps}
         >
-          {field.options.map((option, index) => {
+          {options.map(option => {
             return (
               <Option
                 disabled={option.disabled}
