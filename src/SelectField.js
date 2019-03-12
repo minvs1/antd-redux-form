@@ -57,6 +57,9 @@ const SelectField = ({
       <div id={id}>
         <Select
           onChange={handleChange}
+          onSelect={handleChange}
+          onBlur={event => input.onBlur(event)}
+          onFocus={event => input.onFocus(event)}
           value={input.value ? input.value : undefined}
           {...restProps}
         >
