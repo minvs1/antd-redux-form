@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node devServer.js"
+    "clean": "rimraf dist",
+    "start": "node devServer.js",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build": "npm run clean && npm run build:webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
@@ -13,11 +16,13 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "express": "^4.16.4",
     "flow-bin": "^0.94.0",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
     "webpack-dev-middleware": "^3.6.1"
   },
   "dependencies": {
