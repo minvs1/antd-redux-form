@@ -1112,10 +1112,10 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
-flow-bin@^0.67.1:
-  version "0.67.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.67.1.tgz#eabb7197cce870ac9442cfd04251c7ddc30377db"
-  integrity sha512-jZwanQrtgVRDKs3Le3MmD44YTZSzWkpuUeMv4ZckDOuaa2VQ41ttuxqzxErRdTr/ZSs+J1L2SQW6NKO+D4t2Vw==
+flow-bin@^0.95.1:
+  version "0.95.1"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.95.1.tgz#633113831ccff4b7ee70a2730f63fc43b69ba85f"
+  integrity sha512-06IOC/pqPMNRYtC6AMZEWYR9Fi6UdBC7gImGinPuNUpPZFnP5E9/0cBCl3DWrH4zz/gSM2HdDilU7vPGpYIr2w==
 
 for-in@^1.0.2:
   version "1.0.2"
