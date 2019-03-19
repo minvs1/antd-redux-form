@@ -16,7 +16,7 @@ const BaseErrorField = (props: Props) => {
         description={(() => {
           if (props.meta.error.constructor === Array) {
             return (
-              <ul style={{ paddingLeft: 18 }}>
+              <ul style={{ paddingLeft: 18, margin: 0 }}>
                 {props.meta.error.map((error, index) => {
                   return <li key={index}>{error}</li>
                 })}
