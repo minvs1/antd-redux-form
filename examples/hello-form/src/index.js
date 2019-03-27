@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
-import { reducer as reduxFormReducer } from 'redux-form'
+import { reducer as reduxFormReducer, change, touch } from 'redux-form'
 
 import HelloForm from './HelloForm'
 
@@ -17,9 +17,16 @@ const store = createStore(
 
 const root = document.getElementById('root')
 
+window.Store = store
+
+window.ReduxFormActions = {
+  change,
+  touch,
+}
+
 if (root) {
   ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={window.Store}>
       <HelloForm />
     </Provider>,
     root
