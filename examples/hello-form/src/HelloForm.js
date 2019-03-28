@@ -9,6 +9,7 @@ import {
   SelectField,
   SliderField,
   SwitchField,
+  CheckableTagField,
 } from 'antd-redux-form'
 
 class HelloForm extends Component {
@@ -100,6 +101,17 @@ class HelloForm extends Component {
           >
             {'CheckboxField'}
           </Field>
+
+          <Field
+            label="CheckableTagField"
+            name="CheckableTagField"
+            component={CheckableTagField}
+            options={[
+              { value: 'a', title: 'Option A' },
+              { value: 'b', title: 'Option B' },
+              { value: 'c', title: 'Option C', disabled: true },
+            ]}
+          />
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button htmlType="submit" type="primary">
