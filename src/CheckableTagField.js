@@ -6,9 +6,7 @@ import classNames from 'classnames'
 
 import type { FieldProps } from 'redux-form'
 
-import type { FormItemProps } from '../types'
-
-import './styles'
+import type { FormItemProps } from './types'
 
 const FormItem = Form.Item
 const CheckableTag = Tag.CheckableTag
