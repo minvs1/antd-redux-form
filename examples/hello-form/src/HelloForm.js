@@ -10,6 +10,7 @@ import {
   SliderField,
   SwitchField,
   CheckableTagField,
+  TextAreaField,
 } from 'antd-redux-form'
 
 class HelloForm extends Component {
@@ -113,6 +114,12 @@ class HelloForm extends Component {
             ]}
           />
 
+          <Field
+            label="TextAreaField"
+            name="TextAreaField"
+            component={TextAreaField}
+          />
+
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button htmlType="submit" type="primary">
               {'Submit Form'}
@@ -139,8 +146,24 @@ const validate = values => {
     errors.SelectField = 'is required'
   }
 
+  if (!values.SliderField) {
+    errors.SliderField = 'is required'
+  }
+
+  if (!values.SwitchField) {
+    errors.SwitchField = 'is required'
+  }
+
   if (!values.CheckboxField) {
     errors.CheckboxField = 'is required'
+  }
+
+  if (!values.CheckableTagField) {
+    errors.CheckableTagField = 'is required'
+  }
+
+  if (!values.TextAreaField) {
+    errors.TextAreaField = 'is required'
   }
 
   return errors
