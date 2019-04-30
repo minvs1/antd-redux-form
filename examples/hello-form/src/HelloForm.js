@@ -11,6 +11,7 @@ import {
   SwitchField,
   CheckableTagField,
   TextAreaField,
+  InputNumberField,
 } from 'antd-redux-form'
 
 class HelloForm extends Component {
@@ -120,6 +121,15 @@ class HelloForm extends Component {
             component={TextAreaField}
           />
 
+          <Field
+            label="InputNumberField"
+            name="InputNumberField"
+            component={InputNumberField}
+            min={0.3}
+            max={300}
+            step={0.3}
+          />
+
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button htmlType="submit" type="primary">
               {'Submit Form'}
@@ -164,6 +174,10 @@ const validate = values => {
 
   if (!values.TextAreaField) {
     errors.TextAreaField = 'is required'
+  }
+
+  if (!values.InputNumberField) {
+    errors.InputNumberField = 'is required'
   }
 
   return errors

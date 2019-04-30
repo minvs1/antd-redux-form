@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "antd": "^3.15.0",
-    "antd-redux-form": "file:../../lib",
+    "antd-redux-form": "file:../..",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-redux": "^6.0.1",
