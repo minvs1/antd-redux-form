@@ -12,6 +12,8 @@ import {
   CheckableTagField,
   TextAreaField,
   InputNumberField,
+  ColorField,
+  UploadFileField,
 } from 'antd-redux-form'
 
 class HelloForm extends Component {
@@ -128,6 +130,17 @@ class HelloForm extends Component {
             min={0.3}
             max={300}
             step={0.3}
+          />
+
+          <Field label="ColorField" name="ColorField" component={ColorField} />
+
+          <Field
+            component={UploadFileField}
+            label="ColorField"
+            manualUpload
+            name="ColorField"
+            preview
+            singleFile
           />
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
