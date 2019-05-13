@@ -8,6 +8,7 @@ const ModalConfirm = Modal.confirm
 
 import type { FieldProps } from 'redux-form'
 import type { Node } from 'react'
+
 import type { FormItemProps } from './types'
 
 type Props = {
@@ -37,7 +38,6 @@ const UploadFileField = ({
   fileLimit,
   manualUpload,
   uploadButton,
-  singleFile,
   preview,
   ...restProps
 }: Props) => {
@@ -67,10 +67,7 @@ const UploadFileField = ({
   const handleChange = (info: { file: File, fileList: File[] }) => {
     let fileList = [...info.fileList]
 
-    if (singleFile) {
-      // Don't send array if singleFile enabled
-      fileList = info.fileList[info.fileList.length - 1]
-    } else if (fileLimit) {
+    if (fileLimit) {
       fileList = fileList.slice(-fileLimit)
     }
 
@@ -99,12 +96,6 @@ const UploadFileField = ({
 
   const _listType = listType || (preview ? 'picture-card' : undefined)
 
-  const fileList = input.value
-    ? Array.isArray(input.value)
-      ? input.value
-      : [input.value]
-    : []
-
   return (
     <FormItem
       colon={colon}
@@ -119,7 +110,7 @@ const UploadFileField = ({
     >
       <Upload
         beforeUpload={beforeUpload}
-        fileList={fileList}
+        fileList={input.value}
         listType={_listType}
         onChange={handleChange}
         onPreview={handlePreview}
