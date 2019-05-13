@@ -69,7 +69,7 @@ const SelectField = ({
                 disabled={option.disabled}
                 key={option.value}
                 value={option.value}
-                title={option.title || option.value}
+                title={option.title}
               >
                 {option.label}
               </Option>
