@@ -1,81 +1,70 @@
 // @flow
+
 import React from 'react'
 import { Form, Select } from 'antd'
+import type { FieldProps } from 'redux-form'
+
+import { prepareProps } from './helpers'
+import type { FormItemProps } from './types'
 
 const FormItem = Form.Item
 const Option = Select.Option
 
-const SelectField = ({
-  colon,
-  extra,
-  hasFeedback,
-  meta,
-  help,
-  hideError,
-  required,
-  id,
-  labelCol,
-  wrapperCol,
-  input,
-  onChange,
-  options,
-  ...restProps
-}: Object) => {
-  const hasError = meta.touched && meta.error && !hideError
+type Props = Object & FormItemProps & FieldProps
+
+const SelectField = (props: Props) => {
+  const {
+    formItemProps,
+    inputProps,
+    sharedProps,
+    restProps: { options, ...restProps },
+    children,
+  } = prepareProps(props)
 
   const handleChange = value => {
-    if (input.onChange) {
-      input.onChange(value)
-    }
-
-    if (onChange) {
-      onChange(value)
+    if (inputProps.onChange) {
+      inputProps.onChange(value)
     }
   }
 
-  const _labelCol =
-    labelCol ||
-    (restProps.label ? { xs: { span: 24 }, sm: { span: 8 } } : { span: 0 })
-  const _wrapperCol =
-    wrapperCol ||
-    (restProps.label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 })
-
-  // TODO: Implement OptGroup
-
   return (
-    <FormItem
-      colon={colon}
-      extra={extra}
-      hasFeedback={hasFeedback}
-      help={hasError ? meta.error : help}
-      label={restProps.label}
-      labelCol={_labelCol}
-      required={required}
-      validateStatus={hasError ? 'error' : ''}
-      wrapperCol={_wrapperCol}
-    >
-      <div id={id}>
-        <Select
-          onChange={handleChange}
-          onSelect={handleChange}
-          onBlur={event => input.onBlur(event)}
-          onFocus={event => input.onFocus(event)}
-          value={input.value ? input.value : undefined}
-          {...restProps}
-        >
-          {options.map(option => {
-            return (
-              <Option
-                disabled={option.disabled}
-                key={option.value}
-                value={option.value}
-                title={option.title}
-              >
-                {option.label}
-              </Option>
-            )
-          })}
-        </Select>
+    <FormItem {...formItemProps}>
+      <div
+        id={sharedProps.inputWrapperID}
+        className={sharedProps.inputWrapperClassName}
+      >
+        {sharedProps.beforeInput}
+
+        {sharedProps.customInput ? (
+          sharedProps.customInput(props)
+        ) : (
+          <Select
+            {...inputProps}
+            onChange={handleChange}
+            onSelect={handleChange}
+            onBlur={event => inputProps.onBlur(event)}
+            onFocus={event => inputProps.onFocus(event)}
+            value={inputProps.value ? inputProps.value : undefined}
+            {...restProps}
+          >
+            {children
+              ? children
+              : options.map(option => {
+                  return (
+                    <Option
+                      disabled={option.disabled}
+                      key={option.value}
+                      value={option.value}
+                      title={option.title}
+                    >
+                      {option.label}
+                    </Option>
+                  )
+                })}
+          </Select>
+        )}
+
+        {sharedProps.afterInput}
       </div>
     </FormItem>
   )

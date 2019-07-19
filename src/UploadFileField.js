@@ -2,14 +2,14 @@
 
 import React from 'react'
 import { Form, Upload, Button, Icon, Modal } from 'antd'
-
-const FormItem = Form.Item
-const ModalConfirm = Modal.confirm
-
 import type { FieldProps } from 'redux-form'
 import type { Node } from 'react'
 
+import { prepareProps } from './helpers'
 import type { FormItemProps } from './types'
+
+const FormItem = Form.Item
+const ModalConfirm = Modal.confirm
 
 type Props = {
   preview: boolean,
@@ -22,25 +22,22 @@ type Props = {
 } & FormItemProps &
   FieldProps
 
-const UploadFileField = ({
-  colon,
-  extra,
-  hasFeedback,
-  meta,
-  help,
-  hideError,
-  required,
-  labelCol,
-  wrapperCol,
-  input,
-  label,
-  listType,
-  fileLimit,
-  manualUpload,
-  uploadButton,
-  preview,
-  ...restProps
-}: Props) => {
+const UploadFileField = (props: Props) => {
+  const {
+    formItemProps,
+    inputProps,
+    sharedProps,
+    restProps: {
+      uploadButton,
+      preview,
+      manualUpload,
+      fileLimit,
+      listType,
+      ...restProps
+    },
+    children,
+  } = prepareProps(props)
+
   const renderUploadButton = () => {
     if (!preview) {
       return uploadButton || <Button icon="upload">{'Click to Upload'}</Button>
@@ -71,8 +68,8 @@ const UploadFileField = ({
       fileList = fileList.slice(-fileLimit)
     }
 
-    input.onChange(fileList)
-    input.onBlur()
+    inputProps.onChange(fileList)
+    inputProps.onBlur()
   }
 
   const handlePreview = file => {
@@ -86,38 +83,33 @@ const UploadFileField = ({
     })
   }
 
-  const hasError = meta.touched && meta.error && !hideError
-
-  const _labelCol =
-    labelCol || (label ? { xs: { span: 24 }, sm: { span: 8 } } : { span: 0 })
-  const _wrapperCol =
-    wrapperCol ||
-    (label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 })
-
   const _listType = listType || (preview ? 'picture-card' : undefined)
 
   return (
-    <FormItem
-      colon={colon}
-      extra={extra}
-      hasFeedback={hasFeedback}
-      help={hasError ? meta.error : help}
-      label={label}
-      labelCol={_labelCol}
-      required={required}
-      validateStatus={hasError ? 'error' : ''}
-      wrapperCol={_wrapperCol}
-    >
-      <Upload
-        beforeUpload={beforeUpload}
-        fileList={input.value}
-        listType={_listType}
-        onChange={handleChange}
-        onPreview={handlePreview}
-        {...restProps}
+    <FormItem {...formItemProps}>
+      <div
+        id={sharedProps.inputWrapperID}
+        className={sharedProps.inputWrapperClassName}
       >
-        {renderUploadButton()}
-      </Upload>
+        {sharedProps.beforeInput}
+
+        {sharedProps.customInput ? (
+          sharedProps.customInput(props)
+        ) : (
+          <Upload
+            beforeUpload={beforeUpload}
+            fileList={inputProps.value}
+            listType={_listType}
+            onChange={handleChange}
+            onPreview={handlePreview}
+            {...restProps}
+          >
+            {renderUploadButton()}
+          </Upload>
+        )}
+
+        {sharedProps.afterInput}
+      </div>
     </FormItem>
   )
 }

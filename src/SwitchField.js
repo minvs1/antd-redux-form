@@ -1,45 +1,41 @@
+// @flow
+
 import React from 'react'
 import { Form, Switch } from 'antd'
+import type { FieldProps } from 'redux-form'
+
+import { prepareProps } from './helpers'
+import type { FormItemProps } from './types'
 
 const FormItem = Form.Item
 
-const SwitchField = field => {
-  const hasError = field.meta.touched && field.meta.error && !field.hideError
+type Props = {} & FormItemProps & FieldProps
 
-  const handleChange = value => {
-    if (field.onValueChange) {
-      field.onValueChange(value)
-    }
-
-    if (field.input.onChange) {
-      field.input.onChange(value)
-    }
-
-    if (field.onChange) {
-      field.onChange(value)
-    }
-  }
-
-  const labelCol = field.labelCol || { xs: { span: 24 }, sm: { span: 8 } }
-  const wrapperCol = field.wrapperCol || { xs: { span: 24 }, sm: { span: 16 } }
+const SwitchField = (props: Props) => {
+  const { formItemProps, inputProps, sharedProps, restProps } = prepareProps(
+    props
+  )
 
   return (
-    <FormItem
-      colon={field.colon}
-      extra={field.extra}
-      hasFeedback={field.hasFeedback}
-      help={hasError ? field.meta.error : field.help}
-      label={field.label}
-      labelCol={labelCol}
-      required={field.required}
-      validateStatus={hasError ? 'error' : ''}
-      wrapperCol={wrapperCol}
-    >
-      <Switch
-        onChange={handleChange}
-        checked={!!field.input.value}
-        id={field.id}
-      />
+    <FormItem {...formItemProps}>
+      <div
+        id={sharedProps.inputWrapperID}
+        className={sharedProps.inputWrapperClassName}
+      >
+        {sharedProps.beforeInput}
+
+        {sharedProps.customInput ? (
+          sharedProps.customInput(props)
+        ) : (
+          <Switch
+            onChange={sharedProps.handleChange}
+            checked={!!inputProps.value}
+            id={restProps.id}
+          />
+        )}
+
+        {sharedProps.afterInput}
+      </div>
     </FormItem>
   )
 }

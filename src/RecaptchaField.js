@@ -1,86 +1,78 @@
 // @flow
+
 import React from 'react'
 import { Form, Input, Spin } from 'antd'
 import Recaptcha from 'react-recaptcha'
+import type { FieldProps } from 'redux-form'
+
+import { prepareProps } from './helpers'
+import type { FormItemProps } from './types'
 
 const FormItem = Form.Item
 
-type Props = Object
-type State = Object
+type Props = {} & FormItemProps & FieldProps
+type State = {
+  loading: boolean,
+}
 
 class RecaptchaField extends React.Component<Props, State> {
   state = {
-    loading: true
+    loading: true,
   }
-  
+
   render() {
-    const field = this.props
-    
-    const hasError = field.meta.touched && field.meta.error && !field.hideError
+    const {
+      formItemProps,
+      inputProps,
+      sharedProps,
+      restProps: { verifyCallback, onLoadCallback, ...restProps },
+    } = prepareProps(this.props)
 
-    const verifyCallback = response => {
-      if (field.verifyCallback) {
-        field.verifyCallback(response)
+    const handleVerifyCallback = response => {
+      if (verifyCallback) {
+        verifyCallback(response)
       }
 
-      if (field.input.onChange) {
-        field.input.onChange(response)
-      }
-
-      if (field.onChange) {
-        field.onChange(response)
-      }
-    }
-    
-    const onLoadCallback = () => {
-      if (field.onLoadCallback) {
-        field.onLoadCallback()
-      }
-      
-      this.setState({loading: false})
+      sharedProps.handleChange(response)
     }
 
-    const labelCol =
-      field.labelCol ||
-      (field.label ? { xs: { span: 24 }, sm: { span: 8 } } : { span: 0 })
-    const wrapperCol =
-      field.wrapperCol ||
-      (field.label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 })
+    const handleLoadCallback = () => {
+      if (onLoadCallback) {
+        onLoadCallback()
+      }
+
+      this.setState({ loading: false })
+    }
 
     return (
-      <FormItem
-        colon={field.colon}
-        extra={field.extra}
-        hasFeedback={field.hasFeedback}
-        help={hasError ? field.meta.error : field.help}
-        label={field.label}
-        labelCol={labelCol}
-        required={field.required}
-        validateStatus={hasError ? 'error' : ''}
-        wrapperCol={wrapperCol}
-      >
-        {this.state.loading && (
-          <div style={{textAlign: 'center'}}>
-            <Spin tip="Loading reCAPTCHA..." />
-          </div>
-        )}
-      
-        <div style={{display: this.state.loading ? 'none' : 'block'}}>
-          <Recaptcha
-            className={field.className}
-            elementID={field.elementID}
-            expiredCallback={field.expiredCallback}
-            render={field.render}
-            sitekey={field.siteKey}
-            theme={field.theme}
-            type={field.type}
-            size={field.size}
-            tabindex={field.tabIndex}
-            hl={field.hl}
-            badge={field.badge}
-            onloadCallback={onLoadCallback}
-            verifyCallback={verifyCallback}
-          />
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+        >
+          {sharedProps.beforeInput}
+
+          {sharedProps.customInput ? (
+            sharedProps.customInput(this.props, this.state)
+          ) : (
+            <div>
+              {this.state.loading && (
+                <div style={{ textAlign: 'center' }}>
+                  <Spin tip="Loading reCAPTCHA..." />
+                </div>
+              )}
+
+              <div style={{ display: this.state.loading ? 'none' : 'block' }}>
+                <Recaptcha
+                  {...restProps}
+                  onloadCallback={handleLoadCallback}
+                  verifyCallback={handleVerifyCallback}
+                />
+              </div>
+            </div>
+          )}
+
+          {sharedProps.afterInput}
         </div>
       </FormItem>
     )
