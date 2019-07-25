@@ -49,6 +49,7 @@ class RecaptchaField extends React.Component<Props, State> {
         <div
           id={sharedProps.inputWrapperID}
           className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
         >
           {sharedProps.beforeInput}
 

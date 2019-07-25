@@ -12,6 +12,7 @@ export const prepareProps = ({
   hideError,
   inputWrapperID,
   inputWrapperClassName,
+  inputWrapperStyle,
   beforeInput,
   afterInput,
   customInput,
@@ -45,6 +46,7 @@ export const prepareProps = ({
     sharedProps: {
       inputWrapperID,
       inputWrapperClassName,
+      inputWrapperStyle,
       beforeInput,
       afterInput,
       customInput,

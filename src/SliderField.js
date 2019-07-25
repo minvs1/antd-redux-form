@@ -21,6 +21,7 @@ const SliderField = (props: Props) => {
       <div
         id={sharedProps.inputWrapperID}
         className={sharedProps.inputWrapperClassName}
+        style={sharedProps.inputWrapperStyle}
       >
         {sharedProps.beforeInput}
 

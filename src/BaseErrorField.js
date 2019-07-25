@@ -2,11 +2,11 @@
 import React from 'react'
 import { Alert } from 'antd'
 
-import type { FormProps } from 'redux-form'
+import type { FieldProps } from 'redux-form'
 
 type Props = {
   message: string,
-} & FormProps
+} & FieldProps
 
 const BaseErrorField = (props: Props) => {
   if (props.meta.error) {
@@ -14,6 +14,10 @@ const BaseErrorField = (props: Props) => {
       <Alert
         message={props.message}
         description={(() => {
+          if (!props.meta.error) {
+            return null
+          }
+
           if (props.meta.error.constructor === Array) {
             return (
               <ul style={{ paddingLeft: 18, margin: 0 }}>
