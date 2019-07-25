@@ -1,10 +1,16 @@
 workflow "New workflow" {
-  on = "release"
   resolves = ["Publish"]
+  on = "push"
+}
+
+action "Tag Filter" {
+  uses = "actions/bin/filter@master"
+  args = "tag v*"
 }
 
 action "Install dependencies" {
   uses = "actions/npm@4633da3702a5366129dca9d8cc3191476fc3433c"
+  needs = ["Tag Filter"]
   args = "install"
 }
 
