@@ -42,7 +42,6 @@ const SelectField = (props: Props) => {
           <Select
             {...inputProps}
             onChange={handleChange}
-            onSelect={handleChange}
             onBlur={event => inputProps.onBlur(event)}
             onFocus={event => inputProps.onFocus(event)}
             value={inputProps.value ? inputProps.value : undefined}
