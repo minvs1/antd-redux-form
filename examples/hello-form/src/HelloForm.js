@@ -79,6 +79,17 @@ class HelloForm extends Component {
           />
 
           <Field
+            label="SelectFieldModeMultiple"
+            name="SelectFieldModeMultiple"
+            component={SelectField}
+            mode="multiple"
+            options={[
+              { label: 'Option A', value: 'a' },
+              { label: 'Option B', value: 'b' },
+            ]}
+          />
+
+          <Field
             label="SliderField"
             name="SliderField"
             component={SliderField}
