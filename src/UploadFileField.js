@@ -33,6 +33,7 @@ const UploadFileField = (props: Props) => {
       manualUpload,
       fileLimit,
       listType,
+      singleFile,
       ...restProps
     },
     children,
@@ -68,6 +69,11 @@ const UploadFileField = (props: Props) => {
       fileList = fileList.slice(-fileLimit)
     }
 
+    // Send first element in array if singleFile flag specified
+    if (singleFile && fileList && fileList.length > 0) {
+      fileList = fileList[0]
+    }
+
     inputProps.onChange(fileList)
     inputProps.onBlur()
   }
@@ -85,6 +91,12 @@ const UploadFileField = (props: Props) => {
 
   const _listType = listType || (preview ? 'picture-card' : undefined)
 
+  let fileList = inputProps.value
+
+  if (singleFile && fileList && !Array.isArray(fileList)) {
+    fileList = [fileList]
+  }
+
   return (
     <FormItem {...formItemProps}>
       <div
@@ -99,7 +111,7 @@ const UploadFileField = (props: Props) => {
         ) : (
           <Upload
             beforeUpload={beforeUpload}
-            fileList={inputProps.value}
+            fileList={fileList}
             listType={_listType}
             onChange={handleChange}
             onPreview={handlePreview}

@@ -147,9 +147,17 @@ class HelloForm extends Component {
 
           <Field
             component={UploadFileField}
-            label="ColorField"
+            label="UploadFileField"
             manualUpload
-            name="ColorField"
+            name="UploadFileField"
+            preview
+          />
+
+          <Field
+            component={UploadFileField}
+            label="UploadFileFieldSingle"
+            manualUpload
+            name="UploadFileFieldSingle"
             preview
             singleFile
           />
@@ -167,42 +175,6 @@ class HelloForm extends Component {
 
 const validate = values => {
   const errors = {}
-
-  if (!values.InputField) {
-    errors.InputField = 'is required'
-  }
-
-  if (!values.RadioButtonField) {
-    errors.RadioButtonField = 'is required'
-  }
-
-  if (!values.SelectField) {
-    errors.SelectField = 'is required'
-  }
-
-  if (!values.SliderField) {
-    errors.SliderField = 'is required'
-  }
-
-  if (!values.SwitchField) {
-    errors.SwitchField = 'is required'
-  }
-
-  if (!values.CheckboxField) {
-    errors.CheckboxField = 'is required'
-  }
-
-  if (!values.CheckableTagField) {
-    errors.CheckableTagField = 'is required'
-  }
-
-  if (!values.TextAreaField) {
-    errors.TextAreaField = 'is required'
-  }
-
-  if (!values.InputNumberField) {
-    errors.InputNumberField = 'is required'
-  }
 
   return errors
 }
