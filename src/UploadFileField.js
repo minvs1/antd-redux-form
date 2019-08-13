@@ -71,7 +71,7 @@ const UploadFileField = (props: Props) => {
 
     // Send first element in array if singleFile flag specified
     if (singleFile && fileList && fileList.length > 0) {
-      fileList = fileList[0]
+      fileList = fileList[fileList.length - 1]
     }
 
     inputProps.onChange(fileList)
