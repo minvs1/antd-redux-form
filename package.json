@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TomasAchmedovas/antd-redux-form.git"
+    "url": "git+https://github.com/minvs1/antd-redux-form.git"
   },
   "author": "Tomas Achmedovas <achmedovas.tomas@gmail.com>",
   "license": "ISC",
