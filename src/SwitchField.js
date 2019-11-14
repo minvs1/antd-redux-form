@@ -17,27 +17,29 @@ const SwitchField = (props: Props) => {
   )
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <Switch
-            onChange={sharedProps.handleChange}
-            checked={!!inputProps.value}
-            id={restProps.id}
-          />
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <Switch
+              onChange={sharedProps.handleChange}
+              checked={!!inputProps.value}
+              id={restProps.id}
+            />
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

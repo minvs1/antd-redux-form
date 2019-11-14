@@ -17,28 +17,30 @@ const SliderField = (props: Props) => {
   )
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <Slider
-            {...inputProps}
-            {...restProps}
-            onChange={sharedProps.handleChange}
-            value={inputProps.value || restProps.min || 0}
-          />
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <Slider
+              {...inputProps}
+              {...restProps}
+              onChange={sharedProps.handleChange}
+              value={inputProps.value || restProps.min || 0}
+            />
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

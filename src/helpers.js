@@ -21,6 +21,7 @@ export const prepareProps = ({
   meta,
   input,
   children,
+  dataTest,
   ...restProps
 }: Object) => {
   const hasError = meta.touched && meta.error && !hideError
@@ -63,6 +64,7 @@ export const prepareProps = ({
           onValueChange(event)
         }
       },
+      dataTest,
     },
     children,
     restProps,

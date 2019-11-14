@@ -17,27 +17,29 @@ const InputField = (props: Props) => {
   )
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <Input
-            {...inputProps}
-            {...restProps}
-            onChange={sharedProps.handleChange}
-          />
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <Input
+              {...inputProps}
+              {...restProps}
+              onChange={sharedProps.handleChange}
+            />
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

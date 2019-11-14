@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/TomasAchmedovas/antd-redux-form/issues"
   },
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "homepage": "https://github.com/TomasAchmedovas/antd-redux-form#readme",
   "devDependencies": {
     "@babel/cli": "^7.5.5",

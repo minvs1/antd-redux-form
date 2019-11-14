@@ -28,45 +28,47 @@ const SelectField = (props: Props) => {
   }
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <Select
-            {...inputProps}
-            onChange={handleChange}
-            onBlur={event => inputProps.onBlur(event)}
-            onFocus={event => inputProps.onFocus(event)}
-            value={inputProps.value ? inputProps.value : undefined}
-            {...restProps}
-          >
-            {children
-              ? children
-              : options.map(option => {
-                  return (
-                    <Option
-                      disabled={option.disabled}
-                      key={option.value}
-                      value={option.value}
-                      title={option.title}
-                    >
-                      {option.label}
-                    </Option>
-                  )
-                })}
-          </Select>
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <Select
+              {...inputProps}
+              onChange={handleChange}
+              onBlur={event => inputProps.onBlur(event)}
+              onFocus={event => inputProps.onFocus(event)}
+              value={inputProps.value ? inputProps.value : undefined}
+              {...restProps}
+            >
+              {children
+                ? children
+                : options.map(option => {
+                    return (
+                      <Option
+                        disabled={option.disabled}
+                        key={option.value}
+                        value={option.value}
+                        title={option.title}
+                      >
+                        {option.label}
+                      </Option>
+                    )
+                  })}
+            </Select>
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

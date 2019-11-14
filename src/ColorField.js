@@ -18,27 +18,29 @@ const ColorField = (props: Props) => {
   )
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <SketchPicker
-            {...inputProps}
-            {...restProps}
-            color={inputProps.value}
-          />
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <SketchPicker
+              {...inputProps}
+              {...restProps}
+              color={inputProps.value}
+            />
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

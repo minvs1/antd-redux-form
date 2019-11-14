@@ -21,30 +21,32 @@ const CheckboxField = (props: Props) => {
   } = prepareProps(props)
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <Checkbox
-            {...inputProps}
-            checked={!!inputProps.value}
-            {...restProps}
-            onChange={sharedProps.handleChange}
-          >
-            {children}
-          </Checkbox>
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <Checkbox
+              {...inputProps}
+              checked={!!inputProps.value}
+              {...restProps}
+              onChange={sharedProps.handleChange}
+            >
+              {children}
+            </Checkbox>
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

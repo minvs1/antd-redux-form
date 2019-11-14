@@ -98,32 +98,34 @@ const UploadFileField = (props: Props) => {
   }
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <Upload
-            beforeUpload={beforeUpload}
-            fileList={fileList}
-            listType={_listType}
-            onChange={handleChange}
-            onPreview={handlePreview}
-            {...restProps}
-          >
-            {renderUploadButton()}
-          </Upload>
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <Upload
+              beforeUpload={beforeUpload}
+              fileList={fileList}
+              listType={_listType}
+              onChange={handleChange}
+              onPreview={handlePreview}
+              {...restProps}
+            >
+              {renderUploadButton()}
+            </Upload>
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 

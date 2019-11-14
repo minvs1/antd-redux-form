@@ -22,40 +22,42 @@ const RadioButtonField = (props: Props) => {
   } = prepareProps(props)
 
   return (
-    <FormItem {...formItemProps}>
-      <div
-        id={sharedProps.inputWrapperID}
-        className={sharedProps.inputWrapperClassName}
-        style={sharedProps.inputWrapperStyle}
-      >
-        {sharedProps.beforeInput}
+    <div data-test={sharedProps.dataTest || inputProps.name}>
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-        {sharedProps.customInput ? (
-          sharedProps.customInput(props)
-        ) : (
-          <RadioGroup
-            {...inputProps}
-            {...restProps}
-            onChange={sharedProps.handleChange}
-          >
-            {options.map(button => (
-              <RadioButton
-                autoFocus={button.autoFocus}
-                checked={button.checked}
-                defaultChecked={button.defaultChecked}
-                disabled={button.disabled}
-                key={button.value}
-                value={button.value}
-              >
-                {button.label}
-              </RadioButton>
-            ))}
-          </RadioGroup>
-        )}
+          {sharedProps.customInput ? (
+            sharedProps.customInput(props)
+          ) : (
+            <RadioGroup
+              {...inputProps}
+              {...restProps}
+              onChange={sharedProps.handleChange}
+            >
+              {options.map(button => (
+                <RadioButton
+                  autoFocus={button.autoFocus}
+                  checked={button.checked}
+                  defaultChecked={button.defaultChecked}
+                  disabled={button.disabled}
+                  key={button.value}
+                  value={button.value}
+                >
+                  {button.label}
+                </RadioButton>
+              ))}
+            </RadioGroup>
+          )}
 
-        {sharedProps.afterInput}
-      </div>
-    </FormItem>
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
+    </div>
   )
 }
 
