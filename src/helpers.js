@@ -41,6 +41,7 @@ export const prepareProps = ({
       wrapperCol:
         wrapperCol ||
         (label ? { xs: { span: 24 }, sm: { span: 16 } } : { span: 24 }),
+      'data-test': dataTest || input.name,
     },
     metaProps: meta,
     inputProps: input,

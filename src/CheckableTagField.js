@@ -38,34 +38,32 @@ const CheckableTagField = (props: Props) => {
   }
 
   return (
-    <div data-test={sharedProps.dataTest || inputProps.name}>
-      <FormItem {...formItemProps}>
-        <div
-          id={sharedProps.inputWrapperID}
-          className={sharedProps.inputWrapperClassName}
-          style={sharedProps.inputWrapperStyle}
-        >
-          {sharedProps.beforeInput}
+    <FormItem {...formItemProps}>
+      <div
+        id={sharedProps.inputWrapperID}
+        className={sharedProps.inputWrapperClassName}
+        style={sharedProps.inputWrapperStyle}
+      >
+        {sharedProps.beforeInput}
 
-          {sharedProps.customInput
-            ? sharedProps.customInput(props)
-            : props.options.map(tag => (
-                <CheckableTag
-                  className={classNames(tag.tagClassName, {
-                    disabled: tag.disabled,
-                  })}
-                  key={tag.value}
-                  checked={selectedTags.indexOf(tag.value) > -1}
-                  onChange={checked =>
-                    !tag.disabled && handleChange(tag.value, checked)
-                  }
-                >
-                  {tag.title}
-                </CheckableTag>
-              ))}
-        </div>
-      </FormItem>
-    </div>
+        {sharedProps.customInput
+          ? sharedProps.customInput(props)
+          : props.options.map(tag => (
+              <CheckableTag
+                className={classNames(tag.tagClassName, {
+                  disabled: tag.disabled,
+                })}
+                key={tag.value}
+                checked={selectedTags.indexOf(tag.value) > -1}
+                onChange={checked =>
+                  !tag.disabled && handleChange(tag.value, checked)
+                }
+              >
+                {tag.title}
+              </CheckableTag>
+            ))}
+      </div>
+    </FormItem>
   )
 }
 

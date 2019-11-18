@@ -45,39 +45,37 @@ class RecaptchaField extends React.Component<Props, State> {
     }
 
     return (
-      <div data-test={sharedProps.dataTest || inputProps.name}>
-        <FormItem {...formItemProps}>
-          <div
-            id={sharedProps.inputWrapperID}
-            className={sharedProps.inputWrapperClassName}
-            style={sharedProps.inputWrapperStyle}
-          >
-            {sharedProps.beforeInput}
+      <FormItem {...formItemProps}>
+        <div
+          id={sharedProps.inputWrapperID}
+          className={sharedProps.inputWrapperClassName}
+          style={sharedProps.inputWrapperStyle}
+        >
+          {sharedProps.beforeInput}
 
-            {sharedProps.customInput ? (
-              sharedProps.customInput(this.props, this.state)
-            ) : (
-              <div>
-                {this.state.loading && (
-                  <div style={{ textAlign: 'center' }}>
-                    <Spin tip="Loading reCAPTCHA..." />
-                  </div>
-                )}
-
-                <div style={{ display: this.state.loading ? 'none' : 'block' }}>
-                  <Recaptcha
-                    {...restProps}
-                    onloadCallback={handleLoadCallback}
-                    verifyCallback={handleVerifyCallback}
-                  />
+          {sharedProps.customInput ? (
+            sharedProps.customInput(this.props, this.state)
+          ) : (
+            <div>
+              {this.state.loading && (
+                <div style={{ textAlign: 'center' }}>
+                  <Spin tip="Loading reCAPTCHA..." />
                 </div>
-              </div>
-            )}
+              )}
 
-            {sharedProps.afterInput}
-          </div>
-        </FormItem>
-      </div>
+              <div style={{ display: this.state.loading ? 'none' : 'block' }}>
+                <Recaptcha
+                  {...restProps}
+                  onloadCallback={handleLoadCallback}
+                  verifyCallback={handleVerifyCallback}
+                />
+              </div>
+            </div>
+          )}
+
+          {sharedProps.afterInput}
+        </div>
+      </FormItem>
     )
   }
 }
