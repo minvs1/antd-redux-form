@@ -33,7 +33,6 @@ const CheckboxField = (props: Props) => {
           sharedProps.customInput(props)
         ) : (
           <Checkbox
-            data-test={sharedProps.dataTest || inputProps.name}
             {...inputProps}
             checked={!!inputProps.value}
             {...restProps}
